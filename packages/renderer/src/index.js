@@ -18,6 +18,7 @@ let renderer;
 const events = {};
 
 const pdf = (initialValue) => {
+  console.log('using custom react-pdf');
   const onChange = () => {
     const listeners = events.change?.slice() || [];
     for (let i = 0; i < listeners.length; i += 1) listeners[i]();
@@ -84,11 +85,8 @@ const pdf = (initialValue) => {
 
   // TODO: rename this method to `toStream` in next major release, because it return stream not a buffer
   const toBuffer = async () => {
-    const {
-      layout: _INTERNAL__LAYOUT__DATA_,
-      fileStream,
-    } = await render();
-    callOnRender({_INTERNAL__LAYOUT__DATA_});
+    const { layout: _INTERNAL__LAYOUT__DATA_, fileStream } = await render();
+    callOnRender({ _INTERNAL__LAYOUT__DATA_ });
 
     return fileStream;
   };
